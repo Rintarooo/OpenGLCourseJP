@@ -373,16 +373,21 @@ void animate() {
 int main(int argc, char **argv) {
     // OpenGLを初期化する
     // OpenGL initialization
-    if (glfwInit() == GLFW_FALSE) {
-        fprintf(stderr, "Initialization failed!\n");
-        return 1;
+    // if (glfwInit() == GLFW_FALSE) {
+    //     fprintf(stderr, "Initialization failed!\n");
+    //     return 1;
+    // }
+    if (!glfwInit()) {
+        std::cerr << "Failed to initialize GLFW\n";
+        return -1;
     }
 
-    // OpenGLのバージョン設定 (Macの場合には必ず必要)
-    // Specify OpenGL version (mandatory for Mac)
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    // // OpenGLのバージョン設定 (Macの場合には必ず必要)
+    // // Specify OpenGL version (mandatory for Mac)
+    // glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 1);
+    // glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
+    // glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
+    // glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Windowの作成
     // Create a window

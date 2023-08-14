@@ -130,3 +130,39 @@
 ## Copyright
 
 2018-2023 (c) Tatsuya Yatagawa
+
+# Usage
+## setup
+```bash
+# Install GLM
+git clone https://github.com/g-truc/glm.git
+mkdir include
+mv ./glm/glm/ ./include
+```
+
+## local on M1 Mac
+```bash
+# you need to install homebrew
+brew -v
+
+# install freeglut to use GLUT library
+brew install freeglut
+xeyes
+glxgears
+```
+
+## docker
+```bash
+docker-compose -f .devcontainer/docker-compose.yml build m1mac-opengl
+# xhost local:root
+xhost +localhost
+xhost + local:
+# defaults write org.xquartz.X11 enable_iglx -bool YES
+docker-compose -f .devcontainer/docker-compose.yml run --rm m1mac-opengl /bin/bash
+xeyes
+glxgears
+
+```
+
+$ glxinfo | grep "OpenGL version" 
+OpenGL version string: 2.1 Metal - 83.1
