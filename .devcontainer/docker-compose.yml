@@ -1,25 +1,24 @@
 version: "2"
 services:
-  m1mac-opengl:
-    image: m1mac-opengl:latest
+  opengl-vm:
+    image: opengl-vm:latest
     build: 
       context: ..
-      dockerfile: ./.devcontainer/Dockerfile
+      dockerfile: ./.devcontainer/Dockerfiles/Dockerfile
     tty: true
-    volumes:
-      - "~/.Xauthority:/root/.Xauthority"
-      - ../:/app
-      - /tmp/.X11-unix:/tmp/.X11-unix
-    working_dir: /app
     environment:
-      # - CUDA_DEBUGGER_SOFTWARE_PREEMPTION=1
-      - DISPLAY=host.docker.internal:0
-      # - DISPLAY=$DISPLAY
-      # https://github.com/XQuartz/XQuartz/issues/144
-      # No matching fbConfigs or Visuals found - failed to load driver: swrast #231 export LIBGL_ALWAYS_INDIRECT=1
-      - LIBGL_ALWAYS_INDIRECT=1
-      # - NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics
-    platform: linux/amd64
-    network_mode: host
-#     name of display: /private/tmp/com.apple.launchd.RSR3FClcgJ/org.xquartz:0
-# display: /private/tmp/com.apple.launchd.RSR3FClcgJ/org.xquartz:0  screen: 0
+      - DISPLAY=$DISPLAY
+      - CUDA_DEBUGGER_SOFTWARE_PREEMPTION=1
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ..:/app
+    working_dir: /app
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

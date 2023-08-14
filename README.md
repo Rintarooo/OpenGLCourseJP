@@ -164,5 +164,19 @@ glxgears
 
 ```
 
+## GCP VM
+```bash
+# Dockerfileからビルド
+docker-compose -f .devcontainer/docker-compose.yml build opengl-vm
+# Xサーバーのアクセス権限を与える
+xhost local:root
+# コンテナ入る
+docker-compose -f .devcontainer/docker-compose.yml run --rm opengl-vm /bin/bash
+# GUI表示出来るか確認
+xeyes
+# C++ビルド
+./build.sh
+```
+
 $ glxinfo | grep "OpenGL version" 
 OpenGL version string: 2.1 Metal - 83.1

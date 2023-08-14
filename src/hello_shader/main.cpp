@@ -384,10 +384,11 @@ int main(int argc, char **argv) {
 
     // // OpenGLのバージョン設定 (Macの場合には必ず必要)
     // // Specify OpenGL version (mandatory for Mac)
-    // glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 1);
-    // glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
-    // glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
-    // glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    // glsl 3.30 is not supported // https://stackoverflow.com/questions/52592309/glsl-3-30-is-not-supported-when-compiling-glsl-shader-on-ubuntu-18-04
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Windowの作成
     // Create a window
