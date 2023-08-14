@@ -12,11 +12,11 @@ include_directories(
 	${GLUT_INCLUDE_DIR}
 	# ${GLFW_INCLUDE_DIR}
 	include/
-	src/hello_shader/
+	src/shading_models/
 )
 
-add_executable(main src/hello_shader/main.cpp)
-# add_executable(main src/camera_move.cpp)
+# add_executable(main src/hello_shader/main.cpp)
+add_executable(main src/shading_models/main.cpp)
 
 target_link_libraries(main 
 	${OPENGL_LIBRARIES}

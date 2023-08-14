@@ -73,10 +73,24 @@ static float theta = 0.0f;
 // シェーディングのためのマテリアル情報
 // Material parameters for shading
 // Gold (http://www.barradeau.com/nicoptere/dump/materials.html)
+// static const glm::vec3 lightPos = glm::vec3(5.0f, 5.0f, 5.0f);
+// static const glm::vec3 diffColor = glm::vec3(0.75164f, 0.60648f, 0.22648f);
+// static const glm::vec3 specColor = glm::vec3(0.628281f, 0.555802f, 0.366065f);
+// static const glm::vec3 ambiColor = glm::vec3(0.24725f, 0.1995f, 0.0745f);
+// static const float shininess = 51.2f;
+
+// // Polished Silver
+// static const glm::vec3 lightPos = glm::vec3(5.0f, 5.0f, 5.0f);
+// static const glm::vec3 diffColor = glm::vec3(0.2775f, 0.2775f, 0.2775f);
+// static const glm::vec3 specColor = glm::vec3(0.773911f, 0.773911f, 0.773911f);
+// static const glm::vec3 ambiColor = glm::vec3(0.23125f, 0.23125f, 0.23125f);
+// static const float shininess = 89.6f;
+
+// Silver
 static const glm::vec3 lightPos = glm::vec3(5.0f, 5.0f, 5.0f);
-static const glm::vec3 diffColor = glm::vec3(0.75164f, 0.60648f, 0.22648f);
-static const glm::vec3 specColor = glm::vec3(0.628281f, 0.555802f, 0.366065f);
-static const glm::vec3 ambiColor = glm::vec3(0.24725f, 0.1995f, 0.0745f);
+static const glm::vec3 diffColor = glm::vec3(0.50754f, 0.50754f, 0.50754);
+static const glm::vec3 specColor = glm::vec3(0.508273f,0.508273f,0.508273f);
+static const glm::vec3 ambiColor = glm::vec3(0.19225f, 0.19225f, 0.19225f);
 static const float shininess = 51.2f;
 
 // VAOの初期化
@@ -304,9 +318,9 @@ void initializeGL() {
     // Enable depth testing
     glEnable(GL_DEPTH_TEST);
 
-    // 背景色の設定 (黒)
-    // Background color (black)
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    // 背景色の設定 (白)
+    // Background color (white)
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
     // VAOの初期化
     // Initialize VAO
@@ -409,7 +423,8 @@ void resizeGL(GLFWwindow *window, int width, int height) {
 // アニメーションのためのアップデート
 // Update parameters for animation
 void animate() {
-    theta += 1.0f;  // 1度だけ回転 / Rotate 1 degree of angle
+    // theta += 1.0f;  // 1度だけ回転 / Rotate 1 degree of angle
+    theta += 5.0f;  // 1度だけ回転 / Rotate 1 degree of angle
 }
 
 int main(int argc, char **argv) {
@@ -420,9 +435,11 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    // OpenGLのバージョン設定 (Macの場合には必ず必要)
-    // Specify OpenGL version (mandatory for Mac)
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    // // OpenGLのバージョン設定 (Macの場合には必ず必要)
+    // // Specify OpenGL version (mandatory for Mac)
+    // glsl 3.30 is not supported // https://stackoverflow.com/questions/52592309/glsl-3-30-is-not-supported-when-compiling-glsl-shader-on-ubuntu-18-04
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
